@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Threading;
 using ReactiveUI;
 
 namespace M3Conf_ReactiveUI
@@ -15,8 +16,16 @@ namespace M3Conf_ReactiveUI
     {
         public async void DoWork()
         {
-            await Task.Delay(1000);
-            FirstName = "Steve";
+            await Task.Run(async () =>
+            {
+                await Task.Delay(1000);
+
+                DispatcherHelper.CheckBeginInvokeOnUI(() =>
+                {
+                    FirstName = "Steve";
+                });
+               
+            });
         }
 
         public bool CanDoWork()
