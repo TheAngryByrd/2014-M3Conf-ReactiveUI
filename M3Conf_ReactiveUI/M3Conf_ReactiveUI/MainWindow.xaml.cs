@@ -29,14 +29,15 @@ namespace M3Conf_ReactiveUI
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            ViewModel = new ReactiveMainWindowViewModel();
-            this.Bind(ViewModel, vm => vm.FirstName, v => v.FirstName.Text);
-            this.Bind(ViewModel, vm => vm.LastName, v => v.LastName.Text);
-            this.Bind(ViewModel, vm => vm.FavoriteColor, v => v.FavoriteColor.Text);
-            this.OneWayBind(ViewModel, vm => vm.FullName, v => v.FullName.Text);
-            this.OneWayBind(ViewModel, vm => vm.Sentence, v => v.Sentence.Text);
+            DataContext = new ClassicMainWindowViewModel();
+            //ViewModel = new ReactiveMainWindowViewModel();
+            //this.Bind(ViewModel, vm => vm.FirstName, v => v.FirstName.Text);
+            //this.Bind(ViewModel, vm => vm.LastName, v => v.LastName.Text);
+            //this.Bind(ViewModel, vm => vm.FavoriteColor, v => v.FavoriteColor.Text);
+            //this.OneWayBind(ViewModel, vm => vm.FullName, v => v.FullName.Text);
+            //this.OneWayBind(ViewModel, vm => vm.Sentence, v => v.Sentence.Text);
         }
-
+        //WPF Boilerplate
         public ReactiveMainWindowViewModel ViewModel
         {
             get { return (ReactiveMainWindowViewModel)GetValue(ViewModelProperty); }

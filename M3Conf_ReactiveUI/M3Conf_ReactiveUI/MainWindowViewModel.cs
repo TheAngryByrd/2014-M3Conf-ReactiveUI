@@ -5,12 +5,30 @@ using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using ReactiveUI;
 
 namespace M3Conf_ReactiveUI
 {
     public class ClassicMainWindowViewModel : ViewModelBase
     {
+        public async void DoWork()
+        {
+            await Task.Delay(1000);
+            FirstName = "Steve";
+        }
+
+        public bool CanDoWork()
+        {
+            return !string.IsNullOrEmpty(FirstName);
+        }
+
+        public RelayCommand DoWorkCommand { get; private set; }
+        public ClassicMainWindowViewModel()
+        {
+            DoWorkCommand = new RelayCommand(DoWork, CanDoWork);
+        }
+
         private string _firstName;
         public string FirstName
         {
@@ -22,7 +40,8 @@ namespace M3Conf_ReactiveUI
                     _firstName = value;
                     RaisePropertyChanged("FirstName");
                     RaisePropertyChanged("FullName");
-                    //RaisePropertyChanged("Sentence");
+                    RaisePropertyChanged("Sentence");
+                    DoWorkCommand.RaiseCanExecuteChanged();
                 }
                 
             }
@@ -39,12 +58,14 @@ namespace M3Conf_ReactiveUI
                     _lastName = value;
                     RaisePropertyChanged("LastName");
                     RaisePropertyChanged("FullName");
-                    //RaisePropertyChanged("Sentence");
+                    RaisePropertyChanged("Sentence");
                 }
             }
         }
 
         private string _favoriteColor;
+        
+
         public string FavoriteColor
         {
             get { return _favoriteColor; }
