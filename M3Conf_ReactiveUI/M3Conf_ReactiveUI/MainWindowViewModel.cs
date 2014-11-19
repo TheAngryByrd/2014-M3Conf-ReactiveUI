@@ -121,7 +121,7 @@ namespace M3Conf_ReactiveUI
             get { return _sentence.Value; }
         }
 
-        public ReactiveCommand<Unit> DoWorkCommand { get; private set; }
+        public ReactiveCommand<string> DoWorkCommand { get; private set; }
         public ReactiveMainWindowViewModel()
         {
             this.WhenAnyValue(x => x.FirstName, x => x.LastName, (first, last) => new {first,last})
@@ -135,12 +135,17 @@ namespace M3Conf_ReactiveUI
             var canExecuteDoWork = this.WhenAnyValue(x => x.FirstName).Select(_ => !string.IsNullOrEmpty(FirstName));
 
             DoWorkCommand = ReactiveCommand.CreateAsyncTask(canExecuteDoWork, _ => DoWork());
+            DoWorkCommand.Subscribe(x => FirstName = x);
         }
 
-        public async Task DoWork()
+        public Task<string> DoWork()
         {
-            await Task.Delay(1000);
-            FirstName = "Steve";
+            return Task.Run(async () =>
+            {
+                await Task.Delay(1000);
+               return "Steve";
+            });
+           
         }
 
         public string FirstName
