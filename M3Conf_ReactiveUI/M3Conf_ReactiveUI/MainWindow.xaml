@@ -3,10 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <StackPanel>
-        <TextBox Text="{Binding FirstName}"></TextBox>
-        <TextBox Text="{Binding LastName}"></TextBox>
-        <TextBox Text="{Binding FavoriteColor}"></TextBox>
-        <TextBlock Text="{Binding FullName}"></TextBlock>
-        <TextBlock Text="{Binding Sentence}"></TextBlock>
+        <TextBox x:Name="FirstName" ></TextBox>
+        <TextBox x:Name="LastName"></TextBox>
+        <TextBox x:Name="FavoriteColor" ></TextBox>
+        <TextBlock x:Name="FullName" ></TextBlock>
+        <TextBlock x:Name="Sentence"></TextBlock>
     </StackPanel>
 </Window>
