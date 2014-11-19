@@ -3,16 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <StackPanel>
-        <TextBox x:Name="FirstName" Text="{Binding FirstName}"></TextBox>
+        <!--<TextBox x:Name="FirstName" Text="{Binding FirstName}"></TextBox>
         <TextBox x:Name="LastName" Text="{Binding LastName}"></TextBox>
         <TextBox x:Name="FavoriteColor" Text="{Binding FavoriteColor}"></TextBox>
         <TextBlock x:Name="FullName" Text="{Binding FullName}"></TextBlock>
         <TextBlock x:Name="Sentence" Text="{Binding Sentence}"></TextBlock>
-        <Button Content="Do Work" Command="{Binding DoWorkCommand}"></Button>
-        <!--<TextBox x:Name="FirstName" ></TextBox>
+        <Button Content="Do Work" Command="{Binding DoWorkCommand}"></Button>-->
+        <TextBox x:Name="FirstName" ></TextBox>
         <TextBox x:Name="LastName"></TextBox>
         <TextBox x:Name="FavoriteColor" ></TextBox>
         <TextBlock x:Name="FullName" ></TextBlock>
-        <TextBlock x:Name="Sentence"></TextBlock>-->
+        <TextBlock x:Name="Sentence"></TextBlock>
+        <Button x:Name="DoWork" Content="Do Work"></Button>
     </StackPanel>
 </Window>

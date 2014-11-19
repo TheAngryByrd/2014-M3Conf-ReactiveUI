@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive;
 using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -110,6 +111,8 @@ namespace M3Conf_ReactiveUI
         {
             get { return _sentence.Value; }
         }
+
+        public ReactiveCommand<Unit> DoWorkCommand { get; private set; }
         public ReactiveMainWindowViewModel()
         {
             this.WhenAnyValue(x => x.FirstName, x => x.LastName, (first, last) => new {first,last})
@@ -119,6 +122,16 @@ namespace M3Conf_ReactiveUI
             this.WhenAnyValue(x => x.FullName, x => x.FavoriteColor, (full,color) => new {full,color})
                 .Select(x => string.Format("{0}'s favorite color is: {1}", x.full, x.color))
                 .ToProperty(this, x => x.Sentence, out _sentence);
+
+            var canExecuteDoWork = this.WhenAnyValue(x => x.FirstName).Select(_ => !string.IsNullOrEmpty(FirstName));
+
+            DoWorkCommand = ReactiveCommand.CreateAsyncTask(canExecuteDoWork, _ => DoWork());
+        }
+
+        public async Task DoWork()
+        {
+            await Task.Delay(1000);
+            FirstName = "Steve";
         }
 
         public string FirstName
