@@ -2,7 +2,11 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+    <StackPanel>
+        <TextBox Text="{Binding FirstName}"></TextBox>
+        <TextBox Text="{Binding LastName}"></TextBox>
+        <TextBox Text="{Binding FavoriteColor}"></TextBox>
+        <TextBlock Text="{Binding FullName}"></TextBlock>
+        <TextBlock Text="{Binding Sentence}"></TextBlock>
+    </StackPanel>
 </Window>
